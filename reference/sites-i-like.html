@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sites I Like | Bryce's Reference</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .subtitle {
+      color: #888;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    .category {
+      margin-bottom: 3rem;
+    }
+    .category-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #10b981;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #222;
+    }
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .site-card {
+      background: #151515;
+      border: 1px solid #252525;
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.2s;
+    }
+    .site-card:hover {
+      border-color: #10b981;
+      transform: translateY(-2px);
+    }
+    .site-card a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .site-card a:hover { color: #10b981; }
+    .site-url {
+      color: #666;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      word-break: break-all;
+    }
+    .site-notes {
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      background: #1f1f1f;
+      color: #10b981;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .add-form {
+      background: #151515;
+      border: 1px dashed #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .add-form h3 {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    input, textarea {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      flex: 1;
+      min-width: 200px;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #10b981;
+    }
+    textarea { min-height: 80px; resize: vertical; }
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
+    }
+    .last-updated {
+      text-align: center;
+      color: #444;
+      font-size: 0.8rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔖 Sites I Like</h1>
+    <p class="subtitle">Design inspiration, reference sites, and bookmarks</p>
+
+    <!-- INSTRUCTIONS: Add new sites by copying a site-card block -->
+    
+    <div class="category">
+      <h2 class="category-title">🎨 Design Inspiration</h2>
+      <div class="sites-grid">
+        
+        <div class="site-card">
+          <a href="https://example.com" target="_blank">Example Site Name</a>
+          <div class="site-url">example.com</div>
+          <div class="site-notes">Why I like it: Clean layout, good typography, nice color scheme</div>
+          <div class="tags">
+            <span class="tag">minimal</span>
+            <span class="tag">contractor</span>
+          </div>
+        </div>
+
+        <!-- Add more sites here -->
+        
+      </div>
+    </div>
+
+    <div class="category">
+      <h2 class="category-title">🏗️ Contractor Sites</h2>
+      <div class="sites-grid">
+        
+        <!-- Add contractor sites here -->
+        <div class="empty-state">Add sites by editing this file</div>
+        
+      </div>
+    </div>
+
+    <div class="category">
+      <h2 class="category-title">🏓 Pickleball / Sports</h2>
+      <div class="sites-grid">
+        
+        <!-- Add sports sites here -->
+        <div class="empty-state">Add sites by editing this file</div>
+        
+      </div>
+    </div>
+
+    <div class="category">
+      <h2 class="category-title">💼 Agency / Business</h2>
+      <div class="sites-grid">
+        
+        <!-- Add agency/business sites here -->
+        <div class="empty-state">Add sites by editing this file</div>
+        
+      </div>
+    </div>
+
+    <div class="category">
+      <h2 class="category-title">🛠️ Tools & Resources</h2>
+      <div class="sites-grid">
+        
+        <!-- Add tools here -->
+        <div class="empty-state">Add sites by editing this file</div>
+        
+      </div>
+    </div>
+
+    <p class="last-updated">Last updated: February 3, 2026</p>
+  </div>
+
+  <!--
+  =============================================
+  HOW TO ADD A NEW SITE:
+  =============================================
+  
+  Copy this template and paste it inside any category's <div class="sites-grid">:
+
+  <div class="site-card">
+    <a href="URL_HERE" target="_blank">SITE NAME</a>
+    <div class="site-url">domain.com</div>
+    <div class="site-notes">Why I like it: YOUR NOTES HERE</div>
+    <div class="tags">
+      <span class="tag">tag1</span>
+      <span class="tag">tag2</span>
+    </div>
+  </div>
+
+  Or just tell Melvin to add sites and I'll update this file for you.
+  =============================================
+  -->
+</body>
+</html>
