@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Mermaid Lennon ✨🧜‍♀️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #1a237e 0%, #0d47a1 30%, #00838f 60%, #00acc1 100%);
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Animated bubbles */
+    .bubbles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+    }
+
+    .bubble:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 8s; }
+    .bubble:nth-child(2) { left: 20%; width: 20px; height: 20px; animation-duration: 12s; animation-delay: 1s; }
+    .bubble:nth-child(3) { left: 35%; width: 50px; height: 50px; animation-duration: 10s; animation-delay: 2s; }
+    .bubble:nth-child(4) { left: 50%; width: 25px; height: 25px; animation-duration: 9s; animation-delay: 0s; }
+    .bubble:nth-child(5) { left: 65%; width: 35px; height: 35px; animation-duration: 11s; animation-delay: 3s; }
+    .bubble:nth-child(6) { left: 80%; width: 45px; height: 45px; animation-duration: 13s; animation-delay: 2s; }
+    .bubble:nth-child(7) { left: 90%; width: 20px; height: 20px; animation-duration: 8s; animation-delay: 1s; }
+
+    @keyframes rise {
+      0% {
+        bottom: -100px;
+        transform: translateX(0);
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+        bottom: 100vh;
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+    }
+
+    /* Content */
+    .story-container {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Title */
+    .title-section {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .title-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 16px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      color: #f8bbd9;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+
+    /* Story pages */
+    .page {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .page-emoji {
+      font-size: 5rem;
+      text-align: center;
+      display: block;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    .page-text {
+      font-size: 1.4rem;
+      line-height: 2;
+      text-align: center;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .page-text strong {
+      color: #f8bbd9;
+      font-weight: 700;
+    }
+
+    .page-text .magic {
+      color: #fff59d;
+    }
+
+    .page-text .shellee {
+      color: #f48fb1;
+    }
+
+    .page-text .mom {
+      color: #b39ddb;
+    }
+
+    /* Special effects */
+    .sparkle {
+      display: inline-block;
+      animation: sparkle 1.5s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.2); }
+    }
+
+    /* Multi emoji row */
+    .emoji-row {
+      font-size: 3rem;
+      text-align: center;
+      display: block;
+      margin: 20px 0;
+      letter-spacing: 10px;
+    }
+
+    /* Super power transformation */
+    .super-page {
+      background: linear-gradient(135deg, rgba(233, 30, 99, 0.3) 0%, rgba(156, 39, 176, 0.3) 100%);
+      border-color: rgba(244, 143, 177, 0.5);
+    }
+
+    .super-page .page-emoji {
+      animation: superPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes superPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255,255,255,0.5)); }
+      50% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(255,255,255,0.8)); }
+    }
+
+    /* The End */
+    .the-end {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .the-end h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #f8bbd9;
+      margin-bottom: 16px;
+    }
+
+    .the-end p {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hearts {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      letter-spacing: 15px;
+    }
+
+    .sleep-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-top: 30px;
+      animation: sleepy 2s ease-in-out infinite;
+    }
+
+    @keyframes sleepy {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    /* For Lennon message */
+    .dedication {
+      text-align: center;
+      margin-top: 60px;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+    }
+
+    .dedication p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+    }
+
+    .dedication .name {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.8rem;
+      color: #f8bbd9;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating bubbles -->
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="story-container">
+
+    <!-- Title -->
+    <div class="title-section">
+      <span class="title-emoji">🧜‍♀️</span>
+      <h1>Super Mermaid Lennon</h1>
+      <p class="subtitle">A Bedtime Story <span class="sparkle">✨</span></p>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+      <span class="page-emoji">🏠💧</span>
+      <p class="page-text">
+        Once upon a time, in a cozy house by the sea, lived a little girl named <strong>Lennon</strong>.
+        <br><br>
+        Lennon had a special secret... she was a <strong>mermaid!</strong> 🧜‍♀️
+      </p>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+      <span class="page-emoji">🥤✨</span>
+      <p class="page-text">
+        Every day, Lennon would drink her special <span class="magic">Mermaid Power</span> — yummy flavored water that made her tail sparkle and shimmer!
+        <br><br>
+        <span class="emoji-row">💜💙💖</span>
+        <br>
+        One sip gave her the power to swim super fast. Two sips made her talk to fishies!
+      </p>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+      <span class="page-emoji">🐙💕</span>
+      <p class="page-text">
+        Lennon's best friend was a little pink octopus named <span class="shellee">Shellee</span>.
+        <br><br>
+        Shellee had eight wiggly arms and loved to give the BEST hugs! 
+        <br><br>
+        <span class="emoji-row">🤗💗🐙</span>
+      </p>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+      <span class="page-emoji">🧜‍♀️👑</span>
+      <p class="page-text">
+        Lennon's <span class="mom">Mommy</span> was a beautiful mermaid too!
+        <br><br>
+        She had a shimmery purple tail and always reminded Lennon: 
+        <br><br>
+        <em>"Just one cup of Mermaid Power, sweet girl!"</em>
+      </p>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+      <span class="page-emoji">🥤🥤🥤</span>
+      <p class="page-text">
+        But one magical day, Lennon was SO thirsty...
+        <br><br>
+        She drank ONE cup of Mermaid Power... then TWO cups... then <strong>THREE whole cups!</strong>
+        <br><br>
+        <span class="emoji-row">😮✨⚡</span>
+      </p>
+    </div>
+
+    <!-- Page 6 - SUPER TRANSFORMATION -->
+    <div class="page super-page">
+      <span class="page-emoji">⚡🧜‍♀️⚡</span>
+      <p class="page-text">
+        Suddenly, Lennon started to <span class="magic">GLOW!</span>
+        <br><br>
+        Sparkles swirled all around her! Her tail turned RAINBOW colors!
+        <br><br>
+        <span class="emoji-row">🌈✨💫</span>
+        <br>
+        She became... a <strong>SUPER MERMAID!</strong>
+      </p>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page super-page">
+      <span class="page-emoji">💨🌊🐠</span>
+      <p class="page-text">
+        Super Mermaid Lennon could swim faster than a dolphin! 
+        <br><br>
+        She could make the waves dance! She could talk to ALL the sea creatures!
+        <br><br>
+        <span class="emoji-row">🐬🦈🐢🐡</span>
+      </p>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+      <span class="page-emoji">🐙😄</span>
+      <p class="page-text">
+        <span class="shellee">"WOW, Lennon!"</span> squeaked Shellee, clapping all eight arms.
+        <br><br>
+        <em>"You're AMAZING! Let's go on an adventure!"</em>
+        <br><br>
+        And they zoomed through the ocean together! 
+        <span class="emoji-row">💨💨💨</span>
+      </p>
+    </div>
+
+    <!-- Page 9 -->
+    <div class="page">
+      <span class="page-emoji">🧜‍♀️💜</span>
+      <p class="page-text">
+        <span class="mom">Mommy Mermaid</span> found them playing in a coral castle.
+        <br><br>
+        <em>"My goodness! Someone had extra Mermaid Power today!"</em> she laughed.
+        <br><br>
+        She gave Lennon a big mermaid hug. 🤗
+      </p>
+    </div>
+
+    <!-- Page 10 -->
+    <div class="page">
+      <span class="page-emoji">🌙😴</span>
+      <p class="page-text">
+        As the moon rose over the ocean, Super Mermaid Lennon started to feel sleepy...
+        <br><br>
+        The rainbow sparkles gently faded away.
+        <br><br>
+        <span class="emoji-row">✨🌙✨</span>
+      </p>
+    </div>
+
+    <!-- Page 11 -->
+    <div class="page">
+      <span class="page-emoji">🛏️💗</span>
+      <p class="page-text">
+        Mommy tucked Lennon into her cozy seashell bed.
+        <br><br>
+        <span class="shellee">Shellee</span> snuggled up next to her.
+        <br><br>
+        <em>"Tomorrow,"</em> whispered Mommy, <em>"just ONE cup of Mermaid Power, okay?"</em>
+      </p>
+    </div>
+
+    <!-- Page 12 -->
+    <div class="page">
+      <span class="page-emoji">😊💭</span>
+      <p class="page-text">
+        Lennon smiled sleepily.
+        <br><br>
+        <em>"Okay, Mommy... but being a Super Mermaid was really, REALLY fun!"</em>
+        <br><br>
+        <span class="emoji-row">😴💤🧜‍♀️</span>
+      </p>
+    </div>
+
+    <!-- The End -->
+    <div class="the-end">
+      <h2>The End</h2>
+      <p>Sweet dreams, little mermaid... 🌙</p>
+      <div class="hearts">💗🧜‍♀️💗</div>
+      <span class="sleep-emoji">😴💤</span>
+    </div>
+
+    <!-- Dedication -->
+    <div class="dedication">
+      <p>A special bedtime story made with love for</p>
+      <p class="name">Lennon 💕</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
