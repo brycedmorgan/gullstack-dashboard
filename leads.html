@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GullStack Lead Pipeline | All Prospects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --dark: #1f2937;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-500: #6b7280;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-100);
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+      color: white;
+      padding: 2rem;
+    }
+    
+    .header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .header p {
+      opacity: 0.9;
+    }
+    
+    .stats-bar {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .stat {
+      background: rgba(255,255,255,0.15);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+    }
+    
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    
+    .filters {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .badge {
+      background: var(--purple);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+    }
+    
+    th {
+      background: var(--dark);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+    }
+    
+    tr:hover { background: var(--gray-100); }
+    
+    .company-name {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .company-url {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+    
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .status-new { background: #dbeafe; color: #1d4ed8; }
+    .status-preview { background: #fef3c7; color: #d97706; }
+    .status-contacted { background: #d1fae5; color: #059669; }
+    .status-meeting { background: #ede9fe; color: #7c3aed; }
+    .status-closed { background: #dcfce7; color: #16a34a; }
+    
+    .industry {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      background: var(--gray-100);
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    
+    .revenue-signal {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+    
+    .issues {
+      font-size: 0.8rem;
+      color: var(--red);
+    }
+    
+    .preview-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--purple);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+    
+    .preview-link:hover { text-decoration: underline; }
+    
+    .action-btn {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .btn-email { background: var(--blue); color: white; }
+    .btn-call { background: var(--green); color: white; }
+    
+    .brand-tag {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .brand-gullstack { background: #ede9fe; color: #7c3aed; }
+    .brand-augment { background: #fce7f3; color: #be185d; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🦅 GullStack Lead Pipeline</h1>
+    <p>Master list of all prospects across brands</p>
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-number">18</div>
+        <div class="stat-label">Total Leads</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Preview Sites</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Emails Sent</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Closed Deals</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="filters">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">GullStack</button>
+    <button class="filter-btn">Augment</button>
+    <button class="filter-btn">Has Preview</button>
+    <button class="filter-btn">Needs Outreach</button>
+  </div>
+  
+  <div class="container">
+    
+    <!-- LOCAL UTAH LEADS -->
+    <div class="section-title">
+      🏔️ Local Utah Leads (In-Person Ready)
+      <span class="badge">11</span>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Industry</th>
+          <th>Location</th>
+          <th>Revenue Signal</th>
+          <th>Site Issues</th>
+          <th>Preview</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="company-name">RG Plumbing Inc.</div>
+            <div class="company-url">plumbingsouthjordanutah.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🔧 Plumbing</span></td>
+          <td>South Jordan</td>
+          <td class="revenue-signal">Since 1985 • 40 years</td>
+          <td class="issues">Template site, no photos</td>
+          <td><a href="https://gull-stack.github.io/local-lead-previews/rg-plumbing/" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Gordon Family Dental</div>
+            <div class="company-url">dentistinlehi.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🦷 Dental</span></td>
+          <td>Lehi</td>
+          <td class="revenue-signal">3 dentists, CEREC tech</td>
+          <td class="issues">Outdated design, weak mobile</td>
+          <td><a href="https://gull-stack.github.io/local-lead-previews/gordon-dental/" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Toscano Restaurant</div>
+            <div class="company-url">toscano-restaurant.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🍝 Restaurant</span></td>
+          <td>Draper</td>
+          <td class="revenue-signal">Prime location, popular</td>
+          <td class="issues">HTTP only! No reservations</td>
+          <td><a href="https://gull-stack.github.io/local-lead-previews/toscano-restaurant/" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Treehouse Athletic Club</div>
+            <div class="company-url">treehousefitness.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🏋️ Fitness</span></td>
+          <td>Draper</td>
+          <td class="revenue-signal">72K sq ft, since 1999</td>
+          <td class="issues">Dated, no online signup</td>
+          <td><a href="https://gull-stack.github.io/treehouse-preview/" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Monson Construction</div>
+            <div class="company-url">monsonconstructioninc.net</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🏗️ Construction</span></td>
+          <td>Murray/Draper</td>
+          <td class="revenue-signal">Commercial GC, govt projects</td>
+          <td class="issues">Very dated, 2010 design</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">DSI HVAC</div>
+            <div class="company-url">dsihvac.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">❄️ HVAC</span></td>
+          <td>Draper</td>
+          <td class="revenue-signal">Premier HVAC company</td>
+          <td class="issues">🚨 SITE BROKEN/DOWN</td>
+          <td>—</td>
+          <td><span class="status status-new">Hot Lead!</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Richins Car Service</div>
+            <div class="company-url">richinscarservice.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🚗 Auto</span></td>
+          <td>Draper</td>
+          <td class="revenue-signal">Tires + full service</td>
+          <td class="issues">Generic template</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Landscaping Lehi</div>
+            <div class="company-url">landscapinglehi.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🌿 Landscaping</span></td>
+          <td>Lehi</td>
+          <td class="revenue-signal">Fire features, masonry</td>
+          <td class="issues">Dated, text-heavy</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Custom J Landscaping</div>
+            <div class="company-url">customjlandscaping.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🌿 Landscaping</span></td>
+          <td>Lehi</td>
+          <td class="revenue-signal">Full-service, hardscaping</td>
+          <td class="issues">Basic WP, no portfolio</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Dave Passey Plumbing</div>
+            <div class="company-url">passeyplumbing.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">🔧 Plumbing</span></td>
+          <td>South Jordan</td>
+          <td class="revenue-signal">Since 1972 • 53 years!</td>
+          <td class="issues">Clean but dated</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Cook Electric Inc.</div>
+            <div class="company-url">cookelectricinc.net</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">⚡ Electrical</span></td>
+          <td>South Jordan</td>
+          <td class="revenue-signal">Since 1987, great reviews</td>
+          <td class="issues">Template feel</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-call">📞 Call</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- PLASTIC SURGEON LEADS -->
+    <div class="section-title">
+      💉 Plastic Surgeon Leads (Augment Advertise)
+      <span class="badge">7</span>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Practice</th>
+          <th>Doctor(s)</th>
+          <th>Location</th>
+          <th>Revenue Signal</th>
+          <th>Site Issues</th>
+          <th>Preview</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="company-name">Valley Plastic Surgery</div>
+            <div class="company-url">—</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>Dr. Valley</td>
+          <td>—</td>
+          <td class="revenue-signal">—</td>
+          <td class="issues">—</td>
+          <td><a href="https://brycedmorgan.github.io/augment-leads/lead-1-valley.html" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Guerra Plastic Surgery</div>
+            <div class="company-url">—</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>Dr. Guerra</td>
+          <td>—</td>
+          <td class="revenue-signal">—</td>
+          <td class="issues">—</td>
+          <td><a href="https://brycedmorgan.github.io/augment-leads/lead-2-guerra.html" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Jeneby Plastic Surgery</div>
+            <div class="company-url">—</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>Dr. Jeneby</td>
+          <td>—</td>
+          <td class="revenue-signal">—</td>
+          <td class="issues">—</td>
+          <td><a href="https://brycedmorgan.github.io/augment-leads/lead-3-jeneby.html" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Tampa Mommy Makeover</div>
+            <div class="company-url">—</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>—</td>
+          <td>Tampa, FL</td>
+          <td class="revenue-signal">—</td>
+          <td class="issues">—</td>
+          <td><a href="https://brycedmorgan.github.io/augment-leads/lead-4-tampa.html" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Law Plastic Surgery</div>
+            <div class="company-url">—</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>Dr. Law</td>
+          <td>—</td>
+          <td class="revenue-signal">—</td>
+          <td class="issues">—</td>
+          <td><a href="https://brycedmorgan.github.io/augment-leads/lead-5-law.html" class="preview-link" target="_blank">🔗 View</a></td>
+          <td><span class="status status-preview">Preview Ready</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">Georgia Plastic</div>
+            <div class="company-url">georgiaplastic.com</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>Dr. Okoro</td>
+          <td>Atlanta, GA</td>
+          <td class="revenue-signal">Established practice</td>
+          <td class="issues">Needs analysis</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="company-name">My Houston Surgeons</div>
+            <div class="company-url">myhoustonsurgeons.com</div>
+            <span class="brand-tag brand-augment">Augment</span>
+          </td>
+          <td>7 Surgeons</td>
+          <td>Houston, TX</td>
+          <td class="revenue-signal">Multi-surgeon practice</td>
+          <td class="issues">Needs analysis</td>
+          <td>—</td>
+          <td><span class="status status-new">New Lead</span></td>
+          <td>
+            <button class="action-btn btn-email">📧 Email</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- CLOSED DEALS -->
+    <div class="section-title">
+      ✅ Closed Deals
+      <span class="badge">1</span>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Industry</th>
+          <th>Deal Type</th>
+          <th>Value</th>
+          <th>Status</th>
+          <th>Closed Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="company-name">Gold Wash Plants 🎉</div>
+            <div class="company-url">goldwashplants.com</div>
+            <span class="brand-tag brand-gullstack">GullStack</span>
+          </td>
+          <td><span class="industry">⛏️ Mining Equipment</span></td>
+          <td>SEO + Website</td>
+          <td><strong>$55/mo</strong></td>
+          <td><span class="status status-closed">Paid!</span></td>
+          <td>Feb 6, 2026</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  
+  <script>
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
