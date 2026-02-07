@@ -207,6 +207,108 @@
     
     .btn-email { background: var(--blue); color: white; }
     .btn-call { background: var(--green); color: white; }
+    .btn-log { background: var(--orange); color: white; }
+    
+    .email-activity {
+      font-size: 0.8rem;
+    }
+    
+    .email-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.5rem;
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    
+    .email-count.has-reply {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    
+    .activity-log {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    
+    .activity-log h3 {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .activity-item {
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+    }
+    
+    .activity-item:last-child { border-bottom: none; }
+    
+    .activity-time {
+      color: var(--gray-500);
+      font-size: 0.8rem;
+      min-width: 140px;
+    }
+    
+    .activity-icon {
+      font-size: 1.2rem;
+    }
+    
+    .activity-text {
+      flex: 1;
+    }
+    
+    .activity-company {
+      font-weight: 600;
+      color: var(--purple);
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal.active { display: flex; }
+    
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+    
+    .modal-content h3 { margin-bottom: 1rem; }
+    
+    .modal-content input, .modal-content select, .modal-content textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
     
     .brand-tag {
       display: inline-block;
@@ -234,7 +336,7 @@
         <div class="stat-label">Preview Sites</div>
       </div>
       <div class="stat">
-        <div class="stat-number">0</div>
+        <div class="stat-number" id="stat-emails">4</div>
         <div class="stat-label">Emails Sent</div>
       </div>
       <div class="stat">
@@ -269,6 +371,7 @@
           <th>Revenue Signal</th>
           <th>Site Issues</th>
           <th>Preview</th>
+          <th>Emails</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -285,9 +388,10 @@
           <td class="revenue-signal">Since 1985 • 40 years</td>
           <td class="issues">Template site, no photos</td>
           <td><a href="https://gull-stack.github.io/local-lead-previews/rg-plumbing/" class="preview-link" target="_blank">🔗 View</a></td>
-          <td><span class="status status-preview">Preview Ready</span></td>
+          <td class="email-activity"><span class="email-count">📧 1</span></td>
+          <td><span class="status status-contacted">Contacted</span></td>
           <td>
-            <button class="action-btn btn-call">📞 Call</button>
+            <button class="action-btn btn-log" onclick="logActivity('RG Plumbing')">+ Log</button>
           </td>
         </tr>
         <tr>
@@ -301,9 +405,10 @@
           <td class="revenue-signal">3 dentists, CEREC tech</td>
           <td class="issues">Outdated design, weak mobile</td>
           <td><a href="https://gull-stack.github.io/local-lead-previews/gordon-dental/" class="preview-link" target="_blank">🔗 View</a></td>
-          <td><span class="status status-preview">Preview Ready</span></td>
+          <td class="email-activity"><span class="email-count">📧 1</span></td>
+          <td><span class="status status-contacted">Contacted</span></td>
           <td>
-            <button class="action-btn btn-call">📞 Call</button>
+            <button class="action-btn btn-log" onclick="logActivity('Gordon Family Dental')">+ Log</button>
           </td>
         </tr>
         <tr>
@@ -317,9 +422,10 @@
           <td class="revenue-signal">Prime location, popular</td>
           <td class="issues">HTTP only! No reservations</td>
           <td><a href="https://gull-stack.github.io/local-lead-previews/toscano-restaurant/" class="preview-link" target="_blank">🔗 View</a></td>
-          <td><span class="status status-preview">Preview Ready</span></td>
+          <td class="email-activity"><span class="email-count">📧 1</span></td>
+          <td><span class="status status-contacted">Contacted</span></td>
           <td>
-            <button class="action-btn btn-call">📞 Call</button>
+            <button class="action-btn btn-log" onclick="logActivity('Toscano Restaurant')">+ Log</button>
           </td>
         </tr>
         <tr>
@@ -333,9 +439,10 @@
           <td class="revenue-signal">72K sq ft, since 1999</td>
           <td class="issues">Dated, no online signup</td>
           <td><a href="https://gull-stack.github.io/treehouse-preview/" class="preview-link" target="_blank">🔗 View</a></td>
-          <td><span class="status status-preview">Preview Ready</span></td>
+          <td class="email-activity"><span class="email-count">📧 1</span></td>
+          <td><span class="status status-contacted">Contacted</span></td>
           <td>
-            <button class="action-btn btn-call">📞 Call</button>
+            <button class="action-btn btn-log" onclick="logActivity('Treehouse Athletic Club')">+ Log</button>
           </td>
         </tr>
         <tr>
@@ -349,9 +456,10 @@
           <td class="revenue-signal">Commercial GC, govt projects</td>
           <td class="issues">Very dated, 2010 design</td>
           <td>—</td>
+          <td class="email-activity">—</td>
           <td><span class="status status-new">New Lead</span></td>
           <td>
-            <button class="action-btn btn-call">📞 Call</button>
+            <button class="action-btn btn-log" onclick="logActivity('Monson Construction')">+ Log</button>
           </td>
         </tr>
         <tr>
@@ -365,9 +473,10 @@
           <td class="revenue-signal">Premier HVAC company</td>
           <td class="issues">🚨 SITE BROKEN/DOWN</td>
           <td>—</td>
-          <td><span class="status status-new">Hot Lead!</span></td>
+          <td class="email-activity">—</td>
+          <td><span class="status status-new">🔥 Hot Lead!</span></td>
           <td>
-            <button class="action-btn btn-call">📞 Call</button>
+            <button class="action-btn btn-log" onclick="logActivity('DSI HVAC')">+ Log</button>
           </td>
         </tr>
         <tr>
@@ -623,6 +732,65 @@
     
   </div>
   
+    <!-- ACTIVITY LOG -->
+    <div class="activity-log">
+      <h3>📋 Recent Activity</h3>
+      <div id="activity-list">
+        <div class="activity-item">
+          <span class="activity-time">Feb 6, 2026 • 4:30 PM</span>
+          <span class="activity-icon">📧</span>
+          <span class="activity-text">Donald sent outreach email to <span class="activity-company">RG Plumbing</span> with preview site link</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Feb 6, 2026 • 4:25 PM</span>
+          <span class="activity-icon">📧</span>
+          <span class="activity-text">Donald sent outreach email to <span class="activity-company">Gordon Family Dental</span> with preview site link</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Feb 6, 2026 • 4:20 PM</span>
+          <span class="activity-icon">📧</span>
+          <span class="activity-text">Donald sent outreach email to <span class="activity-company">Toscano Restaurant</span> with preview site link</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Feb 6, 2026 • 4:15 PM</span>
+          <span class="activity-icon">📧</span>
+          <span class="activity-text">Donald sent outreach email to <span class="activity-company">Treehouse Athletic Club</span> with preview site link</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Feb 6, 2026 • 2:00 PM</span>
+          <span class="activity-icon">🎉</span>
+          <span class="activity-text"><span class="activity-company">Gold Wash Plants</span> signed $55/mo SEO contract - FIRST REVENUE!</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Feb 6, 2026 • 10:00 AM</span>
+          <span class="activity-icon">🎨</span>
+          <span class="activity-text">Preview site built for <span class="activity-company">Treehouse Athletic Club</span></span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Log Activity Modal -->
+  <div class="modal" id="logModal">
+    <div class="modal-content">
+      <h3>Log Activity</h3>
+      <input type="text" id="modalCompany" readonly>
+      <select id="activityType">
+        <option value="email">📧 Email Sent</option>
+        <option value="call">📞 Phone Call</option>
+        <option value="meeting">🤝 Meeting</option>
+        <option value="reply">💬 Reply Received</option>
+        <option value="site">🎨 Preview Site Built</option>
+      </select>
+      <textarea id="activityNotes" placeholder="Notes (optional)" rows="3"></textarea>
+      <div class="modal-actions">
+        <button class="action-btn" onclick="closeModal()">Cancel</button>
+        <button class="action-btn btn-log" onclick="saveActivity()">Save</button>
+      </div>
+    </div>
+  </div>
+  
   <script>
     // Filter functionality
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -630,6 +798,52 @@
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       });
+    });
+    
+    // Activity logging
+    function logActivity(company) {
+      document.getElementById('modalCompany').value = company;
+      document.getElementById('logModal').classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('logModal').classList.remove('active');
+    }
+    
+    function saveActivity() {
+      const company = document.getElementById('modalCompany').value;
+      const type = document.getElementById('activityType').value;
+      const notes = document.getElementById('activityNotes').value;
+      const icons = { email: '📧', call: '📞', meeting: '🤝', reply: '💬', site: '🎨' };
+      const labels = { email: 'sent email to', call: 'called', meeting: 'met with', reply: 'received reply from', site: 'built preview for' };
+      
+      const now = new Date();
+      const timeStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' • ' + 
+                     now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      
+      const newActivity = document.createElement('div');
+      newActivity.className = 'activity-item';
+      newActivity.innerHTML = `
+        <span class="activity-time">${timeStr}</span>
+        <span class="activity-icon">${icons[type]}</span>
+        <span class="activity-text">Donald ${labels[type]} <span class="activity-company">${company}</span>${notes ? ': ' + notes : ''}</span>
+      `;
+      
+      document.getElementById('activity-list').prepend(newActivity);
+      
+      // Update email count if email was sent
+      if (type === 'email') {
+        const count = parseInt(document.getElementById('stat-emails').textContent) + 1;
+        document.getElementById('stat-emails').textContent = count;
+      }
+      
+      closeModal();
+      document.getElementById('activityNotes').value = '';
+    }
+    
+    // Close modal on backdrop click
+    document.getElementById('logModal').addEventListener('click', (e) => {
+      if (e.target.id === 'logModal') closeModal();
     });
   </script>
 </body>
